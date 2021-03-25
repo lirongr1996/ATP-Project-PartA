@@ -2,6 +2,8 @@ package algorithms.mazeGenerators;
 
 public class Maze {
     private  int [][] twoDMaze;
+    private Position start;
+    private  Position goal;
 
     public Maze(int row, int col) {
         twoDMaze=new int[row][col];
@@ -9,12 +11,20 @@ public class Maze {
 
     public Position getStartPosition()
     {
-        return  new Position(0,0);
+        return  start;
+    }
+
+    public void setStart(Position start) {
+        this.start = start;
+    }
+
+    public void setGoal(Position goal) {
+        this.goal = goal;
     }
 
     public  Position getGoalPosition()
     {
-        return  new Position(0,0);
+        return  goal;
     }
 
     public int[][] getTwoDMaze() {

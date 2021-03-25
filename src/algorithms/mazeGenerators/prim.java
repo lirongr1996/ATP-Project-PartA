@@ -3,17 +3,10 @@ package algorithms.mazeGenerators;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class MyMazeGenerator extends AMazeGenerator {
+public class prim extends AMazeGenerator {
 
 
-    /**
-     * @param row is the number of rows
-     * @param col is the number of columns
-     * neighborCell: 0=up cell, 1=right cell, 2= down cell, 3= left cell
-     * visitedCells is the number of cells we visited
-     *
-     * @return
-     */
+
     @Override
     public Maze generate(int row, int col) {
         Random rand=new Random();
