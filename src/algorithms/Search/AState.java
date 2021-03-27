@@ -6,7 +6,7 @@ public abstract class AState {
     protected int cost;
     protected AState comeFrom;
     protected String state;
-
+    private boolean visit;
 
 
     @Override
@@ -18,4 +18,22 @@ public abstract class AState {
     }
 
     public abstract int getCost();
+
+    public boolean isVisit() {
+        return visit;
+    }
+
+    public void setVisit(boolean visit) {
+        this.visit = visit;
+    }
+
+    public void setComeFrom(AState state)
+    {
+        this.comeFrom=state;
+    }
+
+    public AState getComeFrom()
+    {
+        return comeFrom;
+    }
 }

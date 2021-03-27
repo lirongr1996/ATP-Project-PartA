@@ -31,6 +31,15 @@ public class Maze {
         return twoDMaze;
     }
 
+    public int getRow()
+    {
+        return twoDMaze.length;
+    }
+    public int getCol()
+    {
+        return twoDMaze[0].length;
+    }
+
     public void setPosition (int row, int col, int k)
     {
         this.twoDMaze[row][col]=k;
