@@ -49,15 +49,16 @@ public class Maze {
     public void print()
     {
         for (int i = 0; i < twoDMaze.length; i++) {
+            System.out.print("{ ");
             for (int j = 0; j < twoDMaze[0].length; j++) {
                 if(i==getStartPosition().getRowIndex()&&j==getStartPosition().getColumnIndex())
-                    System.out.print("S");
+                    System.out.print("S ");
                 else if(i==getGoalPosition().getRowIndex()&&j==getGoalPosition().getColumnIndex())
-                    System.out.print("E");
+                    System.out.print("E ");
                 else
-                    System.out.print(twoDMaze[i][j]);
+                    System.out.print(twoDMaze[i][j]+" ");
             }
-            System.out.println();
+            System.out.println("}");
         }
     }
 

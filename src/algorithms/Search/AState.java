@@ -27,6 +27,10 @@ public abstract class AState {
         this.visit = visit;
     }
 
+    public boolean getVisit()
+    {
+        return this.visit;
+    }
     public void setComeFrom(AState state)
     {
         this.comeFrom=state;
@@ -35,5 +39,10 @@ public abstract class AState {
     public AState getComeFrom()
     {
         return comeFrom;
+    }
+
+    @Override
+    public String toString() {
+        return this.state;
     }
 }

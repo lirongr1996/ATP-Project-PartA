@@ -8,4 +8,6 @@ public interface ISearchable {
     AState getGoalState();
 
     public ArrayList<AState> getAllPossibleStates (AState state);
+
+    public void clearVisit();
 }

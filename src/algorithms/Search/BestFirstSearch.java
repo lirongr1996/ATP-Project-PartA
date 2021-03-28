@@ -13,6 +13,7 @@ public class BestFirstSearch extends BreadthFirstSearch{
 
     @Override
     public Solution solve(ISearchable domain) {
+        domain.clearVisit();
         Solution solve=new Solution();
 
         AState start=domain.getStartState();
@@ -33,7 +34,6 @@ public class BestFirstSearch extends BreadthFirstSearch{
             ArrayList<AState> neighbors=domain.getAllPossibleStates(currentState);
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
-                n.setVisit(true);
                 n.setComeFrom(currentState);
                 possibleState.add(n);
                 countNode++;

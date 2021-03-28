@@ -9,6 +9,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public Solution solve(ISearchable domain) {
+        domain.clearVisit();
         Solution solve=new Solution();
 
         AState start=domain.getStartState();
@@ -27,9 +28,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
                 break;
 
             ArrayList<AState> neighbors=domain.getAllPossibleStates(currentState);
-            for (int i = 0; i < neighbors.size(); i++) {
+            while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
-                n.setVisit(true);
                 n.setComeFrom(currentState);
                 possibleState.add(n);
                 countNode++;
