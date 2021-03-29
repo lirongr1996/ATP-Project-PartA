@@ -4,6 +4,8 @@ import algorithms.Search.*;
 import algorithms.mazeGenerators.IMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.mazeGenerators.Position;
+
 import java.util.ArrayList;
 
 public class RunSearchOnMaze {
@@ -15,6 +17,7 @@ public class RunSearchOnMaze {
         solveProblem(searchableMaze, new BreadthFirstSearch());
         solveProblem(searchableMaze, new DepthFirstSearch());
         solveProblem(searchableMaze, new BestFirstSearch());
+
     }
 
 

@@ -1,6 +1,7 @@
 package algorithms.Search;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,6 +29,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
                 break;
 
             ArrayList<AState> neighbors=domain.getAllPossibleStates(currentState);
+
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);

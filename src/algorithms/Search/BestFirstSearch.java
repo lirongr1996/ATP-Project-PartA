@@ -19,6 +19,7 @@ public class BestFirstSearch extends BreadthFirstSearch{
         AState start=domain.getStartState();
         possibleState.add(start);
 
+
         countNode++;
         start.setVisit(true);
 
@@ -55,10 +56,10 @@ class cellsCostCompearator implements Comparator<AState> {
         // You could also just return x.length() - y.length(),
         // which would be more efficient.
         if (x.getCost() < y.getCost()) {
-            return 1;
+            return -1;
         }
         if (x.getCost() > y.getCost()) {
-            return -1;
+            return 1;
         }
         return 0;
     }

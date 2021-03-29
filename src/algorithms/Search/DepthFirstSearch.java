@@ -2,6 +2,7 @@ package algorithms.Search;
 
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Collections;
 
 public class DepthFirstSearch extends ASearchingAlgorithm{
     Stack<AState>possibleState=new Stack<>();
@@ -28,6 +29,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
                 break;
 
             ArrayList <AState> neighbors=domain.getAllPossibleStates(currentState);
+            Collections.shuffle(neighbors);
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);
