@@ -3,11 +3,11 @@ package algorithms.mazeGenerators;
 import java.util.Random;
 
 public class EmptyMazeGenerator extends AMazeGenerator {
-    public EmptyMazeGenerator() {
-    }
 
     @Override
     public Maze generate(int row, int col) {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            return null;
         Maze m=new Maze(row,col);
         Random rand=new Random();
         int [][] maze=m.getTwoDMaze();

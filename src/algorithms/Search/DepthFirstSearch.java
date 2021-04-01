@@ -11,6 +11,8 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
 
     @Override
     public Solution solve(ISearchable domain) {
+        if (domain==null)
+            return null;
         domain.clearVisit();
         Solution solve=new Solution();
 
@@ -28,7 +30,9 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
             if (currentState.state.compareTo(domain.getGoalState().state)==0)
                 break;
 
-            ArrayList <AState> neighbors=domain.getAllPossibleStates(currentState);
+            ArrayList <AState> neighbors=domain.getAllSuccessors(currentState);
+            if (neighbors==null)
+                continue;
             Collections.shuffle(neighbors);
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);

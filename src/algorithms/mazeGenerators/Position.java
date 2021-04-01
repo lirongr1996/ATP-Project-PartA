@@ -5,6 +5,8 @@ public class Position {
     private int column;
 
     public Position(int row, int col) {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            return ;
         this.row=row;
         this.column=col;
     }

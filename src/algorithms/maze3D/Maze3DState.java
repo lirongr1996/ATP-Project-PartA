@@ -6,6 +6,8 @@ public class Maze3DState extends AState {
     Position3D pos;
 
     public Maze3DState(Position3D pos,AState state) {
+        if (pos== null || state==null)
+            return;
         this.pos = pos;
         this.state=pos.toString();
         this.comeFrom=state;

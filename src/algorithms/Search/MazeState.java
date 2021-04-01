@@ -6,6 +6,8 @@ public class MazeState extends AState{
     Position pos;
 
     public MazeState(Position pos,AState state) {
+        if (pos==null || state==null)
+            return;
         this.pos = pos;
         this.state=pos.toString();
         this.comeFrom=state;

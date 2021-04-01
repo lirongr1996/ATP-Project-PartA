@@ -8,6 +8,8 @@ public class SimpleMazeGenerator extends AMazeGenerator{
 
     @Override
     public Maze generate(int row, int col) {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            return null;
         Random rand=new Random();
         Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();

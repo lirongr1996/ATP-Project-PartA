@@ -13,6 +13,8 @@ public class SearchableMaze implements ISearchable {
 
     public SearchableMaze (Maze maze)
     {
+        if (maze==null)
+            return;
         this.maze=maze;
         startState=new MazeState(maze.getStartPosition(),null);
         goalState=new MazeState(maze.getGoalPosition(),null);
@@ -44,8 +46,10 @@ public class SearchableMaze implements ISearchable {
         return goalState;
     }
 
-    public ArrayList<AState> getAllPossibleStates (AState stateA)
+    public ArrayList<AState> getAllSuccessors (AState stateA)
     {
+        if (stateA==null)
+            return null;
         MazeState state=(MazeState) stateA;
         int [][]m=this.maze.getTwoDMaze();
         ArrayList<AState> possibleStates=new ArrayList<>();

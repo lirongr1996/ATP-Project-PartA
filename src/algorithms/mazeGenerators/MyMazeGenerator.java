@@ -6,6 +6,8 @@ import java.util.Random;
 public class MyMazeGenerator extends AMazeGenerator {
 
     public Maze generate(int row, int col) {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            return null;
         Maze m=new Maze(row,col);
         while (m.getStartPosition()==null ||m.getGoalPosition()==null) {
             generate(m);
@@ -22,14 +24,14 @@ public class MyMazeGenerator extends AMazeGenerator {
      * @return
      */
     public Maze generate(Maze m) {
+        if (m==null)
+            return  null;
         Random rand=new Random();
       //  Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();
-        boolean [][]visit=new boolean[m.getRow()][m.getCol()];
         for (int i = 0; i < m.getRow(); i++) {
             for (int j = 0; j < m.getCol(); j++) {
                 maze[i][j]=1;
-                visit[i][j]=false;
             }
         }
 

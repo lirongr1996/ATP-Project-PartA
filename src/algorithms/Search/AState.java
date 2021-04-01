@@ -33,6 +33,8 @@ public abstract class AState {
     }
     public void setComeFrom(AState state)
     {
+        if (state==null)
+            return;
         this.comeFrom=state;
     }
 

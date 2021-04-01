@@ -7,7 +7,7 @@ public interface ISearchable {
     AState getStartState();
     AState getGoalState();
 
-    public ArrayList<AState> getAllPossibleStates (AState state);
+    public ArrayList<AState> getAllSuccessors (AState state);
 
     public void clearVisit();
 }

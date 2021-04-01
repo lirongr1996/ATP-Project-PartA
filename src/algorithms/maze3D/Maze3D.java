@@ -8,6 +8,8 @@ public class Maze3D {
     private  Position3D goal;
 
     public Maze3D(int depth, int row, int column) {
+        if (depth<=0 || row<=0 || column<=0 || (row==1 && column==1))
+            return;
         this.threeDMaze =new int[row][column][depth];
     }
 
@@ -25,10 +27,14 @@ public class Maze3D {
     }
 
     public void setStart(Position3D start) {
+        if (start==null)
+            return;
         this.start = start;
     }
 
     public void setGoal(Position3D goal) {
+        if (goal==null)
+            return;
         this.goal = goal;
     }
 
@@ -49,6 +55,8 @@ public class Maze3D {
 
     public void setPosition (int row, int col, int depth, int k)
     {
+        if (depth<=0 || row<=0 || col<=0 || (row==1 && col==1) || (k!=1 && k!=0))
+            return;
         this.threeDMaze[row][col][depth]=k;
     }
 

@@ -6,6 +6,8 @@ public class Maze {
     private  Position goal;
 
     public Maze(int row, int col) {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            return;
         twoDMaze=new int[row][col];
     }
 
@@ -15,10 +17,14 @@ public class Maze {
     }
 
     public void setStart(Position start) {
+        if (start==null)
+            return;
         this.start = start;
     }
 
     public void setGoal(Position goal) {
+        if (goal==null)
+            return;
         this.goal = goal;
     }
 
@@ -42,6 +48,8 @@ public class Maze {
 
     public void setPosition (int row, int col, int k)
     {
+        if (row<=0 || col<=0 || (row==1 && col==1)|| (k!=0 && k!=1))
+            return;
         this.twoDMaze[row][col]=k;
     }
 
