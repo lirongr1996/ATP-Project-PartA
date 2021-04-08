@@ -56,7 +56,7 @@ public class Position3D {
      * @param depth is the new number of the depth of the position
      */
     public void setDepth(int depth) throws Exception {
-        if (depth<0)
+        if (depth<2)
             throw new Exception("The position is out of the bounds");
         this.depth = depth;
     }

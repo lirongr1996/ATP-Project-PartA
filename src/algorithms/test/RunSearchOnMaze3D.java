@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class RunSearchOnMaze3D {
     public static void main(String[] args) throws Exception {
         IMazeGenerator3D mg=new MyMaze3DGenerator();
-        Maze3D maze=mg.generate(2,5,5);
-        maze.print();
+        Maze3D maze=mg.generate(3,5,5);
+       // maze.print();
 
 
         SearchableMaze3D searchableMaze = new SearchableMaze3D(maze);

@@ -8,7 +8,7 @@ public class Maze3D {
     private  Position3D goal;
 
     public Maze3D(int depth, int row, int column) throws Exception {
-        if (depth<0 || row<0 || column<0 || (row==1 && column==1&& depth==1))
+        if (depth<2 || row<0 || column<0)
             throw new Exception("the data of create maze is negative");
         this.threeDMaze =new int[row][column][depth];
     }

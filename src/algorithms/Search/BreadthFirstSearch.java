@@ -43,6 +43,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
             ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
 
+
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);

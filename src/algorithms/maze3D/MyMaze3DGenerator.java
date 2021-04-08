@@ -15,7 +15,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
      * @return the maze the created
      */
     public Maze3D generate(int depth, int row, int column) throws Exception {
-        if (depth<0 || row<0 || column<0 || (row==1 && column==1))
+        if (depth<2 || row<0 || column<0)
             throw new Exception("the data of create maze is negative");
         Maze3D maze=new Maze3D(depth,row,column);
         while (maze.getStartPosition()==null ||maze.getGoalPosition()==null) {
