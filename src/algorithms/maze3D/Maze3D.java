@@ -7,9 +7,9 @@ public class Maze3D {
     private Position3D start;
     private  Position3D goal;
 
-    public Maze3D(int depth, int row, int column) {
-        if (depth<=0 || row<=0 || column<=0 || (row==1 && column==1))
-            return;
+    public Maze3D(int depth, int row, int column) throws Exception {
+        if (depth<0 || row<0 || column<0 || (row==1 && column==1&& depth==1))
+            throw new Exception("the data of create maze is negative");
         this.threeDMaze =new int[row][column][depth];
     }
 
@@ -40,24 +40,18 @@ public class Maze3D {
     /**
      * @param start is the position of the start the maze begin
      */
-    public void setStart(Position3D start) {
+    public void setStart(Position3D start) throws Exception {
         if (start==null)
-        {
-            System.out.println("the start position is null");
-            System.exit(0);
-        }
+            throw new Exception("the start position is null");
         this.start = start;
     }
 
     /**
      * @param goal is the position of the goal of the maze
      */
-    public void setGoal(Position3D goal) {
+    public void setGoal(Position3D goal) throws Exception {
         if (goal==null)
-        {
-            System.out.println("the goal position is null");
-            System.exit(0);
-        }
+            throw new Exception("the goal position is null");
         this.goal = goal;
     }
 
@@ -92,12 +86,9 @@ public class Maze3D {
      * @param depth is the number of the depth of the position
      * @param k is value of the position
      */
-    public void setPosition (int row, int col, int depth, int k)
-    {
-        if (depth<=0 || row<=0 || col<=0 || (row==1 && col==1) || (k!=1 && k!=0)){
-            System.out.println("can't creat maze with negative data");
-            System.exit(0);
-        }
+    public void setPosition (int row, int col, int depth, int k) throws Exception {
+        if (depth<=0 || row<=0 || col<=0 || (row==1 && col==1) || (k!=1 && k!=0))
+            throw new Exception("The position is out of the bounds");
         this.threeDMaze[row][col][depth]=k;
     }
 

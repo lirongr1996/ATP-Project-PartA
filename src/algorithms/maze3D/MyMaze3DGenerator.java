@@ -14,11 +14,9 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
      * @param column is the number of the column of the maze
      * @return the maze the created
      */
-    public Maze3D generate(int depth, int row, int column) {
-        if (depth<0 || row<0 || column<0 || (row==1 && column==1)){
-            System.out.println("The position is out of the bounds");
-            System.exit(0);
-        }
+    public Maze3D generate(int depth, int row, int column) throws Exception {
+        if (depth<0 || row<0 || column<0 || (row==1 && column==1))
+            throw new Exception("the data of create maze is negative");
         Maze3D maze=new Maze3D(depth,row,column);
         while (maze.getStartPosition()==null ||maze.getGoalPosition()==null) {
             generate(maze);
@@ -33,11 +31,9 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
      * frontiers is list that contains the possible cells to change to 0
      * if start or the end is false, and the position is in the bounds, so set the start/goal position
      */
-    private void generate(Maze3D m) {
-        if (m==null){
-            System.out.println("The maze is null");
-            System.exit(0);
-        }
+    private void generate(Maze3D m) throws Exception {
+        if (m==null)
+            throw new Exception("The maze is null");
         Random rand=new Random();
         int [][][] maze=m.getMap();
         boolean [][][]visit=new boolean[m.getRow()][m.getCol()][m.getDepth()];
@@ -90,47 +86,27 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
 
                 if (start==false && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1)) {
-                    try {
-                        m.setStart(new Position3D(x,y,z));
-                    } catch (Exception e) {
-                        System.out.println("The position is out of the bounds");
-                    }
+                    m.setStart(new Position3D(z,x,y));
                     start=true;
                 }
                 else if (end==false && start==true && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1) && z!=m.getStartPosition().getDepthIndex()) {
                     if (m.getStartPosition().getRowIndex()==0 && x!=0 && m.getStartPosition().getColumnIndex()!=y) {
-                        try {
-                            m.setGoal(new Position3D(x,y,z));
-                        } catch (Exception e) {
-                            System.out.println("The position is out of the bounds");
-                        }
+                        m.setGoal(new Position3D(z,x,y));
                         end = true;
                     }
                     else if (m.getStartPosition().getRowIndex()==m.getRow()-1 && x!=m.getRow()-1 && m.getStartPosition().getColumnIndex()!=y)
                     {
-                        try {
-                            m.setGoal(new Position3D(x,y,z));
-                        } catch (Exception e) {
-                            System.out.println("The position is out of the bounds");
-                        }
+                        m.setGoal(new Position3D(z,x,y));
                         end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==0 && y!=0 && m.getStartPosition().getRowIndex()!=x)
                     {
-                        try {
-                            m.setGoal(new Position3D(x,y,z));
-                        } catch (Exception e) {
-                            System.out.println("The position is out of the bounds");
-                        }
+                        m.setGoal(new Position3D(z,x,y));
                         end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==m.getCol()-1 && y!=m.getCol()-1 && m.getStartPosition().getRowIndex()!=x)
                     {
-                        try {
-                            m.setGoal(new Position3D(x,y,z));
-                        } catch (Exception e) {
-                            System.out.println("The position is out of the bounds");
-                        }
+                        m.setGoal(new Position3D(z,x,y));
                         end=true;
                     }
                 }

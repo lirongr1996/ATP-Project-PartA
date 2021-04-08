@@ -18,6 +18,7 @@ class BestFirstSearchTest {
 
     @Test
     void solve() {
+        try {
         BestFirstSearch bfs=new BestFirstSearch();
         Maze m=new Maze(4,4);
         int [][]maze=m.getTwoDMaze();
@@ -49,8 +50,14 @@ class BestFirstSearchTest {
         result.add(m2);
         result.add(m3);
         result.add(m4);
-        ArrayList <AState>solution=bfs.solve(searchableMaze).getSolutionPath();
-        assertArrayEquals(result.toArray(),solution.toArray());
+        ArrayList <AState>solution= null;
+
+            solution = bfs.solve(searchableMaze).getSolutionPath();
+            assertArrayEquals(result.toArray(),solution.toArray());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

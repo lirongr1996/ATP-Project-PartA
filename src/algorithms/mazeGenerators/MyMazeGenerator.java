@@ -10,7 +10,7 @@ public class MyMazeGenerator extends AMazeGenerator {
      * @param col is the number of the column of the maze
      * @return the maze the created
      */
-    public Maze generate(int row, int col) {
+    public Maze generate(int row, int col) throws Exception {
         Maze m=new Maze(row,col);
         while (m.getStartPosition()==null ||m.getGoalPosition()==null) {
             generate(m);
@@ -25,11 +25,9 @@ public class MyMazeGenerator extends AMazeGenerator {
      *if start or the end is false, and the position is in the bounds, so set the start/goal position
      * @return the maze that created and filled
      */
-    public Maze generate(Maze m) {
-        if (m==null){
-            System.out.println("the maxe is null");
-            System.exit(0);
-        }
+    public Maze generate(Maze m) throws Exception {
+        if (m==null)
+            throw new Exception("the maxe is null");
         Random rand=new Random();
       //  Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();

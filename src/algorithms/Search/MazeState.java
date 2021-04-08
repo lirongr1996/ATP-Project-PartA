@@ -7,7 +7,9 @@ import java.util.Objects;
 public class MazeState extends AState{
     Position pos;
 
-    public MazeState(Position pos,AState state) {
+    public MazeState(Position pos,AState state) throws Exception {
+        if (pos==null)
+            throw new Exception("the position is null");
         this.pos = pos;
         this.state=pos.toString();
         this.comeFrom=state;

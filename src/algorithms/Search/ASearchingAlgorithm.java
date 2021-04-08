@@ -11,13 +11,9 @@ public abstract class ASearchingAlgorithm implements  ISearchingAlgorithm{
      * @param start the start postion of the maze
      * @return arrayList the contain path of the solution that found from the search algorithm
      */
-    public ArrayList<AState> restoration (AState currentState, AState start)
-    {
+    public ArrayList<AState> restoration (AState currentState, AState start) throws Exception {
         if (currentState==null || start==null)
-        {
-            System.out.println("The state is null");
-            System.exit(0);
-        }
+            throw new Exception("The state is null");
         ArrayList <AState> path=new ArrayList<>();
         while (currentState.state.compareTo((start.state))!=0)
         {

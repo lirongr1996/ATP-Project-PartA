@@ -11,8 +11,7 @@ public class SearchableMaze implements ISearchable {
     private MazeState goalState;
     private boolean [][] visit;
 
-    public SearchableMaze (Maze maze)
-    {
+    public SearchableMaze (Maze maze) throws Exception {
         this.maze=maze;
         startState=new MazeState(maze.getStartPosition(),null);
         goalState=new MazeState(maze.getGoalPosition(),null);
@@ -57,8 +56,9 @@ public class SearchableMaze implements ISearchable {
      * @param stateA is the state from the maze
      * @return arrayList that contains the all possible neighbor states that can move from stateA to them
      */
-    public ArrayList<AState> getAllSuccessors (AState stateA)
-    {
+    public ArrayList<AState> getAllSuccessors (AState stateA) throws Exception {
+        if (stateA==null)
+            throw new Exception("the state is null");
         MazeState state=(MazeState) stateA;
         int [][]m=this.maze.getTwoDMaze();
         ArrayList<AState> possibleStates=new ArrayList<>();

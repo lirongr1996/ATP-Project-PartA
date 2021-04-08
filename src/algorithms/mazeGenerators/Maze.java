@@ -5,11 +5,9 @@ public class Maze {
     private Position start;
     private  Position goal;
 
-    public Maze(int row, int col) {
-        if (row<0 || col<0){
-            System.out.println("can't creat maze because the negative data");
-            System.exit(0);
-        }
+    public Maze(int row, int col) throws Exception {
+        if (row<0 || col<0)
+            throw new Exception("can't creat maze because the negative data");
         twoDMaze=new int[row][col];
     }
 
@@ -24,24 +22,18 @@ public class Maze {
     /**
      * @param start is the position of the start the maze begin
      */
-    public void setStart(Position start) {
+    public void setStart(Position start) throws Exception {
         if (start==null)
-        {
-            System.out.println("the start position is null");
-            System.exit(0);
-        }
+            throw new Exception("the start position is null");
         this.start = start;
     }
 
     /**
      * @param goal is the position of the goal the maze
      */
-    public void setGoal(Position goal) {
+    public void setGoal(Position goal) throws Exception {
         if (goal==null)
-        {
-            System.out.println("The goal position is null");
-            System.exit(0);
-        }
+            throw new Exception("The goal position is null");
         this.goal = goal;
     }
 
@@ -81,13 +73,9 @@ public class Maze {
      * @param col is the number of the columns of the position
      * @param k is value of the position
      */
-    public void setPosition (int row, int col, int k)
-    {
+    public void setPosition (int row, int col, int k) throws Exception {
         if (row<0 || col<0)
-        {
-            System.out.println("can't change the value of the position because the negative data");
-            System.exit(0);
-        }
+            throw new Exception("can't change the value of the position because the negative data");
         this.twoDMaze[row][col]=k;
     }
 

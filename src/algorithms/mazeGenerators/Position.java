@@ -18,11 +18,9 @@ public class Position {
      * @param row is the number of the row of position
      * @param col is the number of the colum of position
      */
-    public Position(int row, int col) {
-        if (row<0 || col<0){
-            System.out.println("can't create position because the negative data");
-            System.exit(0);
-        }
+    public Position(int row, int col) throws Exception {
+        if (row<0 || col<0)
+            throw new Exception("can't create position because the negative data");
         this.row=row;
         this.column=col;
     }

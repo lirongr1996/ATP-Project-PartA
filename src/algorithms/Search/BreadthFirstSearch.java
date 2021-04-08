@@ -21,7 +21,9 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
      * @return ths solution to the problem
      */
     @Override
-    public Solution solve(ISearchable domain) {
+    public Solution solve(ISearchable domain) throws Exception {
+        if (domain==null)
+            throw new Exception("the domain is null");
         domain.clearVisit();
         Solution solve=new Solution();
 

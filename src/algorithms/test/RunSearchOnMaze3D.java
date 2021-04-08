@@ -9,7 +9,7 @@ import algorithms.maze3D.SearchableMaze3D;
 import java.util.ArrayList;
 
 public class RunSearchOnMaze3D {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         IMazeGenerator3D mg=new MyMaze3DGenerator();
         Maze3D maze=mg.generate(2,5,5);
         maze.print();
@@ -23,7 +23,12 @@ public class RunSearchOnMaze3D {
 
     private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher) {
 //Solve a searching problem with a searcher
-        Solution solution = searcher.solve(domain);
+        Solution solution = null;
+        try {
+            solution = searcher.solve(domain);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));
 //Printing Solution Path
         System.out.println("Solution path:");

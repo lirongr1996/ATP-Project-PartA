@@ -25,13 +25,9 @@ public abstract class AState {
     /**
      * @param state is the state that this state came from
      */
-    public void setComeFrom(AState state)
-    {
+    public void setComeFrom(AState state) throws Exception {
         if (state==null)
-        {
-            System.out.println("can't chage the father state because the state is null");
-            System.exit(0);
-        }
+            throw new Exception("can't chage the father state because the state is null");
         this.comeFrom=state;
     }
 

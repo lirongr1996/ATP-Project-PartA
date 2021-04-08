@@ -11,11 +11,9 @@ public class SimpleMazeGenerator extends AMazeGenerator{
      * @return the maze that created
      */
     @Override
-    public Maze generate(int row, int col) {
-        if (row<=0 || col<=0 || (row==1 && col==1)){
-            System.out.println("can't create maze because negative data");
-            System.exit(0);
-        }
+    public Maze generate(int row, int col) throws Exception {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            throw new Exception("can't create maze because negative data");
         Random rand=new Random();
         Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();

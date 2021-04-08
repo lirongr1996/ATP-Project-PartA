@@ -10,21 +10,32 @@ import java.util.ArrayList;
 
 public class RunSearchOnMaze {
     public static void main(String[] args) {
-        IMazeGenerator mg = new MyMazeGenerator();
-        Maze maze = mg.generate(10, 10);
-        maze.print();
-        SearchableMaze searchableMaze = new SearchableMaze(maze);
-        solveProblem(searchableMaze, new BreadthFirstSearch());
-        solveProblem(searchableMaze, new DepthFirstSearch());
-        solveProblem(searchableMaze, new BestFirstSearch());
+        try {
+            IMazeGenerator mg = new MyMazeGenerator();
+            Maze maze = mg.generate(10, 10);
+            maze.print();
+            SearchableMaze searchableMaze = new SearchableMaze(maze);
+            solveProblem(searchableMaze, new BreadthFirstSearch());
+            solveProblem(searchableMaze, new DepthFirstSearch());
+            solveProblem(searchableMaze, new BestFirstSearch());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
 
 
-    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher) {
+    private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher){
 //Solve a searching problem with a searcher
-        Solution solution = searcher.solve(domain);
+        Solution solution = null;
+        try {
+            solution = searcher.solve(domain);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(String.format("'%s' algorithm - nodes evaluated: %s", searcher.getName(), searcher.getNumberOfNodesEvaluated()));
 //Printing Solution Path
         System.out.println("Solution path:");
