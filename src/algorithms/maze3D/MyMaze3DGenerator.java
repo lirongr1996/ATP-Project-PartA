@@ -46,7 +46,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
             }
         }
 
-        boolean start=false,end=false;
+        boolean start=false;
         LinkedList<int[]> frontiers = new LinkedList<>();
         int x= rand.nextInt(m.getRow());
         int y=rand.nextInt(m.getCol());
@@ -89,25 +89,21 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
                     m.setStart(new Position3D(z,x,y));
                     start=true;
                 }
-                else if (end==false && start==true && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1) && z!=m.getStartPosition().getDepthIndex()) {
+                else if ( start==true && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1) && z!=m.getStartPosition().getDepthIndex()) {
                     if (m.getStartPosition().getRowIndex()==0 && x!=0 && m.getStartPosition().getColumnIndex()!=y) {
                         m.setGoal(new Position3D(z,x,y));
-                        end = true;
                     }
                     else if (m.getStartPosition().getRowIndex()==m.getRow()-1 && x!=m.getRow()-1 && m.getStartPosition().getColumnIndex()!=y)
                     {
                         m.setGoal(new Position3D(z,x,y));
-                        end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==0 && y!=0 && m.getStartPosition().getRowIndex()!=x)
                     {
                         m.setGoal(new Position3D(z,x,y));
-                        end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==m.getCol()-1 && y!=m.getCol()-1 && m.getStartPosition().getRowIndex()!=x)
                     {
                         m.setGoal(new Position3D(z,x,y));
-                        end=true;
                     }
                 }
 //                if (end==true)

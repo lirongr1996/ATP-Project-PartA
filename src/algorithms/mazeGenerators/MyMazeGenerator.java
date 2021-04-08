@@ -37,11 +37,22 @@ public class MyMazeGenerator extends AMazeGenerator {
             }
         }
 
-        boolean start=false,end=false;
+        boolean start=false;
         LinkedList<int[]> frontiers = new LinkedList<>();
-        int x= rand.nextInt(m.getRow());
-        int y=rand.nextInt(m.getCol());
-        frontiers.add(new int[]{x,y,x,y});
+        int x,y,x1,y1;
+        if (m.getRow()%2==0&&m.getCol()%2==0)
+        {
+            x=0;
+            y=0;
+            frontiers.add(new int[]{x,y,x+1,y});
+        }
+        else {
+            x = rand.nextInt(m.getRow());
+            y = rand.nextInt(m.getCol());
+            frontiers.add(new int[]{x, y, x, y});
+        }
+        x1=x;
+        y1=y;
 
         while (!frontiers.isEmpty())
         {
@@ -62,33 +73,41 @@ public class MyMazeGenerator extends AMazeGenerator {
                     frontiers.add( new int[]{x,y+1,x,y+2} );
 
                 if (start==false && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1)) {
-                    m.setStart(new Position(x, y));
+                    if (m.getRow()%2==0&&m.getCol()%2==0)
+                        m.setStart(new Position(0,0));
+                    else
+                        m.setStart(new Position(x, y));
                     start=true;
                 }
-                else if (end==false && start==true && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1)) {
+                else if ( start==true && (x==0 || x==m.getRow()-1 || y==0 || y==m.getCol()-1)) {
                     if (m.getStartPosition().getRowIndex()==0 && x!=0 && m.getStartPosition().getColumnIndex()!=y) {
                         m.setGoal(new Position(x, y));
-                        end = true;
                     }
                     else if (m.getStartPosition().getRowIndex()==m.getRow()-1 && x!=m.getRow()-1 && m.getStartPosition().getColumnIndex()!=y)
                     {
                         m.setGoal(new Position(x, y));
-                        end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==0 && y!=0 && m.getStartPosition().getRowIndex()!=x)
                     {
                         m.setGoal(new Position(x, y));
-                        end=true;
                     }
                     else if (m.getStartPosition().getColumnIndex()==m.getCol()-1 && y!=m.getCol()-1 && m.getStartPosition().getRowIndex()!=x)
                     {
                         m.setGoal(new Position(x, y));
-                        end=true;
                     }
                 }
             }
         }
 
+        if (m.getRow()%2==0&& m.getCol()%2==0)
+        {
+            for (int i = 0; i < m.getCol(); i++) {
+                maze[0][i]=rand.nextInt(2);
+            }
+            for (int i = 0; i < m.getRow(); i++) {
+                maze[i][m.getCol()-1]=rand.nextInt(2);
+            }
+        }
 
         return m;
     }
