@@ -6,38 +6,45 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm {
-    protected Queue<AState> possibleState = new LinkedList<>();
+    protected Queue<AState> possibleState ;
 
+    public BreadthFirstSearch() {
+        this.possibleState= new LinkedList<>();
+    }
+
+    public Queue<AState> getPossibleState() {
+        return possibleState;
+    }
+
+    /**
+     * @param domain the problem that need to be solved, like maze
+     * @return ths solution to the problem
+     */
     @Override
     public Solution solve(ISearchable domain) {
-        if (domain==null)
-            return null;
         domain.clearVisit();
         Solution solve=new Solution();
 
         AState start=domain.getStartState();
-        possibleState.add(start);
+        getPossibleState().add(start);
 
         countNode++;
-        start.setVisit(true);
 
         AState currentState=null;
 
-        while (!possibleState.isEmpty())
+        while (!getPossibleState().isEmpty())
         {
-            currentState=possibleState.remove();
+            currentState=getPossibleState().remove();
 
             if (currentState.state.compareTo(domain.getGoalState().state)==0)
                 break;
 
             ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
-            if (neighbors==null)
-                continue;
 
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);
-                possibleState.add(n);
+                getPossibleState().add(n);
                 countNode++;
             }
         }
@@ -46,11 +53,17 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         return solve;
     }
 
+    /**
+     * @return thee name of the search algorithm
+     */
     @Override
     public String getName() {
         return "BreadthFirstSearch";
     }
 
+    /**
+     * @return the number of the steps that took to solve the problem
+     */
     @Override
     public int getNumberOfNodesEvaluated() {
         return countNode;

@@ -13,8 +13,6 @@ public class SearchableMaze implements ISearchable {
 
     public SearchableMaze (Maze maze)
     {
-        if (maze==null)
-            return;
         this.maze=maze;
         startState=new MazeState(maze.getStartPosition(),null);
         goalState=new MazeState(maze.getGoalPosition(),null);
@@ -27,6 +25,9 @@ public class SearchableMaze implements ISearchable {
         }
     }
 
+    /**
+     * the function change the value of all the cells in array to false in order to search again the maze
+     */
     public void clearVisit()
     {
         for (int i = 0; i < maze.getRow(); i++) {
@@ -36,20 +37,28 @@ public class SearchableMaze implements ISearchable {
         }
     }
 
+    /**
+     * @return the start state of the maze
+     */
     @Override
     public AState getStartState() {
         return startState;
     }
 
+    /**
+     * @return the goal state of the maze
+     */
     @Override
     public AState getGoalState() {
         return goalState;
     }
 
+    /**
+     * @param stateA is the state from the maze
+     * @return arrayList that contains the all possible neighbor states that can move from stateA to them
+     */
     public ArrayList<AState> getAllSuccessors (AState stateA)
     {
-        if (stateA==null)
-            return null;
         MazeState state=(MazeState) stateA;
         int [][]m=this.maze.getTwoDMaze();
         ArrayList<AState> possibleStates=new ArrayList<>();

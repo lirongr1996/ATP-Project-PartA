@@ -4,54 +4,68 @@ import java.util.PriorityQueue;
 import java.util.*;
 
 public class BestFirstSearch extends BreadthFirstSearch{
-    PriorityQueue<AState>possibleState=new PriorityQueue<>(new cellsCostCompearator());
+    private Queue<AState>possibleState;
 
+    public BestFirstSearch() {
+        this.possibleState = new PriorityQueue<>(new cellsCostCompearator());
+    }
+
+    public Queue<AState> getPossibleState() {
+        return possibleState;
+    }
+
+    /**
+     * @return the name of the search algorithm
+     */
     @Override
     public String getName() {
         return "BestFirstSearch";
     }
 
-    @Override
-    public Solution solve(ISearchable domain) {
-        if (domain==null)
-            return null;
-        domain.clearVisit();
-        Solution solve=new Solution();
-
-        AState start=domain.getStartState();
-        possibleState.add(start);
-
-
-        countNode++;
-        start.setVisit(true);
-
-        AState currentState=null;
-
-        while (!possibleState.isEmpty())
-        {
-            currentState=possibleState.remove();
-
-            if (currentState.state.compareTo(domain.getGoalState().state)==0)
-                break;
-
-            ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
-            if (neighbors==null)
-                continue;
-            while(!neighbors.isEmpty()) {
-                AState n=neighbors.remove(0);
-                n.setComeFrom(currentState);
-                possibleState.add(n);
-                countNode++;
-            }
-        }
-        solve.solutionPath=restoration(currentState,domain.getStartState());
-
-        return solve;
-    }
+//    @Override
+//    public Solution solve(ISearchable domain) {
+//        if (domain==null)
+//        {
+//            System.out.println("Can't solve the maze because it is null");
+//            System.exit(0);
+//        }
+//        domain.clearVisit();
+//        Solution solve=new Solution();
+//
+//        AState start=domain.getStartState();
+//        possibleState.add(start);
+//
+//
+//        countNode++;
+//        start.setVisit(true);
+//
+//        AState currentState=null;
+//
+//        while (!possibleState.isEmpty())
+//        {
+//            currentState=possibleState.remove();
+//
+//            if (currentState.state.compareTo(domain.getGoalState().state)==0)
+//                break;
+//
+//            ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
+//            while(!neighbors.isEmpty()) {
+//                AState n=neighbors.remove(0);
+//                n.setComeFrom(currentState);
+//                possibleState.add(n);
+//                countNode++;
+//            }
+//        }
+//        solve.solutionPath=restoration(currentState,domain.getStartState());
+//
+//        return solve;
+//    }
 }
 
 
-
+/**
+ * the compeare class of the min priority queue, if x<y so x will be before y in the queue
+ */
 class cellsCostCompearator implements Comparator<AState> {
     @Override
     public int compare(AState x, AState y) {

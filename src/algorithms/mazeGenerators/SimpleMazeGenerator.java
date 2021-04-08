@@ -5,11 +5,17 @@ import java.util.Random;
 public class SimpleMazeGenerator extends AMazeGenerator{
 
 
-
+    /**
+     * @param row is the number of the rows of the maze
+     * @param col is the number of the columns of the maze
+     * @return the maze that created
+     */
     @Override
     public Maze generate(int row, int col) {
-        if (row<=0 || col<=0 || (row==1 && col==1))
-            return null;
+        if (row<=0 || col<=0 || (row==1 && col==1)){
+            System.out.println("can't create maze because negative data");
+            System.exit(0);
+        }
         Random rand=new Random();
         Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();

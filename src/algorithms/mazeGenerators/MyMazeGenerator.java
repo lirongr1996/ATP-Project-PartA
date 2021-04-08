@@ -5,9 +5,12 @@ import java.util.Random;
 
 public class MyMazeGenerator extends AMazeGenerator {
 
+    /**
+     * @param row is the number of the row of the maze
+     * @param col is the number of the column of the maze
+     * @return the maze the created
+     */
     public Maze generate(int row, int col) {
-        if (row<=0 || col<=0 || (row==1 && col==1))
-            return null;
         Maze m=new Maze(row,col);
         while (m.getStartPosition()==null ||m.getGoalPosition()==null) {
             generate(m);
@@ -17,15 +20,16 @@ public class MyMazeGenerator extends AMazeGenerator {
 
 
     /**
-     * @param m is the maze
-     * neighborCell: 0=up cell, 1=right cell, 2= down cell, 3= left cell
-     * visitedCells is the number of cells we visited
-     *
-     * @return
+     * @param m is the maze that fill with prim algorithm
+     * frontiers is list that contains the possible cells to change to 0
+     *if start or the end is false, and the position is in the bounds, so set the start/goal position
+     * @return the maze that created and filled
      */
     public Maze generate(Maze m) {
-        if (m==null)
-            return  null;
+        if (m==null){
+            System.out.println("the maxe is null");
+            System.exit(0);
+        }
         Random rand=new Random();
       //  Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();

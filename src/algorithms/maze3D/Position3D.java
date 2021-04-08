@@ -6,40 +6,66 @@ public class Position3D {
     private int depth;
 
     public Position3D(int row, int column, int depth) {
-        if (depth<=0 || row<=0 || column<=0 || (row==1 && column==1))
-            return;
+        if (depth<0 || row<0 || column<0){
+            System.out.println("cant create position because the negative data");
+            System.exit(0);
+        }
         this.row = row;
         this.column = column;
         this.depth = depth;
     }
 
+    /**
+     * @return the number of the row of the position
+     */
     public int getRowIndex() {
         return row;
     }
 
+    /**
+     * @param row is the new number of the row of the position
+     */
     public void setRow(int row) {
-        if (row<=0)
-            return;
+        if (row<0){
+            System.out.println("The position is out of the bounds");
+            System.exit(0);
+        }
         this.row = row;
     }
 
+    /**
+     * @return the number of the column of the position
+     */
     public int getColumnIndex() {
         return column;
     }
 
+    /**
+     * @param column is the new number of the column of the position
+     */
     public void setColumn(int column) {
-        if (column<=0)
-            return;
+        if (column<0) {
+            System.out.println("The position is out of the bounds");
+            System.exit(0);
+        }
         this.column = column;
     }
 
+    /**
+     * the number of the depth of the position
+     */
     public int getDepthIndex() {
         return depth;
     }
 
-    public void setDepth(int depth) {
-        if (depth<=0)
-            return;
+    /**
+     * @param depth is the new number of the depth of the position
+     */
+    public void setDepth(int depth){
+        if (depth<0) {
+            System.out.println("The position is out of the bounds");
+            System.exit(0);
+        }
         this.depth = depth;
     }
 

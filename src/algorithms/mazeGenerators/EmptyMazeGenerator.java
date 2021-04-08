@@ -4,10 +4,18 @@ import java.util.Random;
 
 public class EmptyMazeGenerator extends AMazeGenerator {
 
+    /**
+     * @param row is the number of the rows of the maze
+     * @param col is the number of the columns of the maze
+     * @return the maze that created
+     */
     @Override
     public Maze generate(int row, int col) {
-        if (row<=0 || col<=0 || (row==1 && col==1))
-            return null;
+        if (row < 0 || col<0)
+        {
+            System.out.println("Can't create maze because the negative data");
+            System.exit(0);
+        }
         Maze m=new Maze(row,col);
         Random rand=new Random();
         int [][] maze=m.getTwoDMaze();

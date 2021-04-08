@@ -5,14 +5,18 @@ import java.util.Stack;
 import java.util.Collections;
 
 public class DepthFirstSearch extends ASearchingAlgorithm{
-    Stack<AState>possibleState=new Stack<>();
+    Stack<AState>possibleState;
 
+    public DepthFirstSearch() {
+        this.possibleState =new Stack<>();
+    }
 
-
+    /**
+     * @param domain the problem that need to be solved, like maze
+     * @return ths solution to the problem
+     */
     @Override
     public Solution solve(ISearchable domain) {
-        if (domain==null)
-            return null;
         domain.clearVisit();
         Solution solve=new Solution();
 
@@ -20,7 +24,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         possibleState.push(start);
 
         countNode++;
-        start.setVisit(true);
 
         AState currentState=null;
         while (!possibleState.empty())
@@ -31,8 +34,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
                 break;
 
             ArrayList <AState> neighbors=domain.getAllSuccessors(currentState);
-            if (neighbors==null)
-                continue;
             Collections.shuffle(neighbors);
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
@@ -47,11 +48,17 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         return solve;
     }
 
+    /**
+     * @return the name of the search algorithm
+     */
     @Override
     public String getName() {
         return "DepthFirstSearch";
     }
 
+    /**
+     * @return the number of the steps that took to solve the problem
+     */
     @Override
     public int getNumberOfNodesEvaluated() {
         return countNode;

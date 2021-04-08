@@ -6,7 +6,6 @@ public abstract class AState {
     protected int cost;
     protected AState comeFrom;
     protected String state;
-    private boolean visit;
 
 
     @Override
@@ -17,27 +16,28 @@ public abstract class AState {
         return Objects.equals(state, aState.state);
     }
 
+    /**
+     * @return the cost of the movement between two state
+     */
     public abstract int getCost();
 
-    public boolean isVisit() {
-        return visit;
-    }
 
-    public void setVisit(boolean visit) {
-        this.visit = visit;
-    }
-
-    public boolean getVisit()
-    {
-        return this.visit;
-    }
+    /**
+     * @param state is the state that this state came from
+     */
     public void setComeFrom(AState state)
     {
         if (state==null)
-            return;
+        {
+            System.out.println("can't chage the father state because the state is null");
+            System.exit(0);
+        }
         this.comeFrom=state;
     }
 
+    /**
+     * @return the state that this state came from
+     */
     public AState getComeFrom()
     {
         return comeFrom;
