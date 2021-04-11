@@ -1,10 +1,7 @@
 package algorithms.maze3D;
 
-import algorithms.Search.AState;
-import algorithms.Search.ISearchable;
-import algorithms.Search.MazeState;
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.Position;
+import algorithms.search.AState;
+import algorithms.search.ISearchable;
 
 import java.util.ArrayList;
 
@@ -12,7 +9,7 @@ public class SearchableMaze3D implements ISearchable {
     private Maze3D maze;
     private Maze3DState startState;
     private Maze3DState goalState;
-    private boolean [][][] visit;
+    private boolean [][][] visit; //visit is the 3D array of visited cells.
 
     public SearchableMaze3D (Maze3D maze) throws Exception {
         if (maze==null)
@@ -33,7 +30,7 @@ public class SearchableMaze3D implements ISearchable {
 
 
     /**
-     * @return the start position that the maze begin
+     * @return the start state where the maze begin
      */
     @Override
     public AState getStartState() {
@@ -41,7 +38,7 @@ public class SearchableMaze3D implements ISearchable {
     }
 
     /**
-     * @return the goal position of the maze
+     * @return the goal state where the maze ends
      */
     @Override
     public AState getGoalState() {
@@ -49,8 +46,8 @@ public class SearchableMaze3D implements ISearchable {
     }
 
     /**
-     * @param stateA is the state from the maze
-     * @return arrayList that contains the all possible neighbor states that can move from stateA to them
+     * @param stateA is a state from the maze
+     * @return arrayList that contains the all possible neighbors states that can move from stateA to them
      */
     @Override
     public ArrayList<AState> getAllSuccessors(AState stateA) throws Exception {

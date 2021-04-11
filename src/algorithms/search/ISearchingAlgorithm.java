@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 public interface ISearchingAlgorithm {
 

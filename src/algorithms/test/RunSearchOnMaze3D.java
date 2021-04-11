@@ -1,7 +1,7 @@
 package algorithms.test;
 
-import algorithms.Search.*;
-import algorithms.maze3D.IMazeGenerator3D;
+import algorithms.search.*;
+import algorithms.maze3D.IMaze3DGenerator;
 import algorithms.maze3D.Maze3D;
 import algorithms.maze3D.MyMaze3DGenerator;
 import algorithms.maze3D.SearchableMaze3D;
@@ -10,10 +10,9 @@ import java.util.ArrayList;
 
 public class RunSearchOnMaze3D {
     public static void main(String[] args) throws Exception {
-        IMazeGenerator3D mg=new MyMaze3DGenerator();
-        Maze3D maze=mg.generate(3,5,5);
-       // maze.print();
-
+        IMaze3DGenerator mg=new MyMaze3DGenerator();
+        Maze3D maze=mg.generate(5,10,10);
+        maze.print();
 
         SearchableMaze3D searchableMaze = new SearchableMaze3D(maze);
         solveProblem(searchableMaze, new BreadthFirstSearch());

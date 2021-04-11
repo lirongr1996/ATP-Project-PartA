@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;

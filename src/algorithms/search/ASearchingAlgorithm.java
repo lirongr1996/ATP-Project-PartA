@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ public abstract class ASearchingAlgorithm implements  ISearchingAlgorithm{
     /**
      * @param currentState is the goal of the maze
      * @param start the start postion of the maze
-     * @return arrayList the contain path of the solution that found from the search algorithm
+     * @return arrayList that contains a path of the solution that found from the search algorithm
      */
     public ArrayList<AState> restoration (AState currentState, AState start) throws Exception {
         if (currentState==null || start==null)

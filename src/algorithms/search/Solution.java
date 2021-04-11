@@ -1,15 +1,13 @@
-package algorithms.Search;
+package algorithms.search;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class Solution {
 ArrayList<AState> solutionPath=new ArrayList<>();
 
 
     /**
-     * @return arrayList that contian the path of states of the solution that founds from the search algorithm
+     * @return arrayList that contains a path of states of the solution that found from the search algorithm
      */
  public ArrayList<AState> getSolutionPath()
  {

@@ -6,13 +6,13 @@ public class Maze {
     private  Position goal;
 
     public Maze(int row, int col) throws Exception {
-        if (row<0 || col<0)
-            throw new Exception("can't creat maze because the negative data");
+        if (row<0 || col<0 || (row==1 && col==1))
+            throw new Exception("the data of create maze is out of bounds");
         twoDMaze=new int[row][col];
     }
 
     /**
-     * @return the start position of the maze to begin
+     * @return the start position of the maze
      */
     public Position getStartPosition()
     {
@@ -20,7 +20,7 @@ public class Maze {
     }
 
     /**
-     * @param start is the position of the start the maze begin
+     * @param start is the position where the maze begin
      */
     public void setStart(Position start) throws Exception {
         if (start==null)
@@ -29,7 +29,7 @@ public class Maze {
     }
 
     /**
-     * @param goal is the position of the goal the maze
+     * @param goal is the position where the maze ends
      */
     public void setGoal(Position goal) throws Exception {
         if (goal==null)
@@ -38,7 +38,7 @@ public class Maze {
     }
 
     /**
-     * @return is the position of the goal of the maze
+     * @return the position of in maze goal
      */
     public  Position getGoalPosition()
     {
@@ -46,14 +46,14 @@ public class Maze {
     }
 
     /**
-     * @return the array of the maze
+     * @return the matrix of the maze
      */
     public int[][] getTwoDMaze() {
         return twoDMaze;
     }
 
     /**
-     * @return the number of the rows of the maze
+     * @return the number of the rows in the maze
      */
     public int getRow()
     {
@@ -61,7 +61,7 @@ public class Maze {
     }
 
     /**
-     * @return the number of the columns of the maze
+     * @return the number of the columns in the maze
      */
     public int getCol()
     {
@@ -69,13 +69,13 @@ public class Maze {
     }
 
     /**
-     * @param row is the number of the row of the position
-     * @param col is the number of the columns of the position
+     * @param row is row number in the position
+     * @param col is columns number in the position
      * @param k is value of the position
      */
     public void setPosition (int row, int col, int k) throws Exception {
         if (row<0 || col<0)
-            throw new Exception("can't change the value of the position because the negative data");
+            throw new Exception("Can't change the value of the position because the negative data");
         this.twoDMaze[row][col]=k;
     }
 

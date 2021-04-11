@@ -15,18 +15,18 @@ public class Position {
     }
 
     /**
-     * @param row is the number of the row of position
-     * @param col is the number of the colum of position
+     * @param row is row number in the position
+     * @param col is column number in the  position
      */
     public Position(int row, int col) throws Exception {
         if (row<0 || col<0)
-            throw new Exception("can't create position because the negative data");
+            throw new Exception("Can't create position because the negative data");
         this.row=row;
         this.column=col;
     }
 
     /**
-     * @return the number of the row of the position
+     * @return the row number in the position
      */
     public int getRowIndex()
     {
@@ -34,7 +34,7 @@ public class Position {
     }
 
     /**
-     * @return the number of the column of the position
+     * @return the column number in the  position
      */
     public  int getColumnIndex()
     {

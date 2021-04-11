@@ -9,14 +9,14 @@ import java.util.Random;
 public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     /**
-     * @param depth is the number of the depth of the maze
-     * @param row is the number of the row of the maze
-     * @param column is the number of the column of the maze
-     * @return the maze the created
+     * @param depth is the number of maze depth.
+     * @param row is the number of maze rows.
+     * @param column is the number of maze column
+     * @return the maze that created
      */
     public Maze3D generate(int depth, int row, int column) throws Exception {
         if (depth<2 || row<0 || column<0)
-            throw new Exception("the data of create maze is negative");
+            throw new Exception("The data of create maze is out of bounds");
         Maze3D maze=new Maze3D(depth,row,column);
         while (maze.getStartPosition()==null ||maze.getGoalPosition()==null) {
             generate(maze);
@@ -26,10 +26,9 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
     }
 
     /**
-     * @param m is the maze that created, that fill with prim algorithm
-     * visit is boolean array, if the cell is visited- true, else- false
-     * frontiers is list that contains the possible cells to change to 0
-     * if start or the end is false, and the position is in the bounds, so set the start/goal position
+     * @param m is the maze filled by this function with prim algorithm
+     * frontiers is list that contains the possible neighbors
+     * @return the maze that filled
      */
     private void generate(Maze3D m) throws Exception {
         if (m==null)
@@ -37,6 +36,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         Random rand=new Random();
         int [][][] maze=m.getMap();
         boolean [][][]visit=new boolean[m.getRow()][m.getCol()][m.getDepth()];
+        //fill the maze with walls
         for (int i = 0; i < m.getDepth(); i++) {
             for (int j = 0; j < m.getRow(); j++) {
                 for (int k = 0; k < m.getCol(); k++) {
@@ -53,9 +53,10 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         int z=rand.nextInt(m.getDepth());
         frontiers.add(new int[]{x,y,z,x,y,z});
 
+        //implement the prim algorithm
         while (!frontiers.isEmpty())
         {
-            int[] f = frontiers.remove(  );
+            int[] f = frontiers.remove( rand.nextInt( frontiers.size() ) );
             x = f[3];
             y = f[4];
             z =  f[5];
@@ -106,26 +107,9 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
                         m.setGoal(new Position3D(z,x,y));
                     }
                 }
-//                if (end==true)
-//                    break;
             }
         }
 
-
-//        while (!frontiers.isEmpty())
-//        {
-//            int[] f = frontiers.remove();
-//            maze[f[0]][f[1]][f[2]]= rand.nextInt(2);
-//            maze[f[3]][f[4]][f[5]]= rand.nextInt(2);
-//        }
-//        for (int i = 0; i <m.getDepth() ; i++) {
-//            for (int j = 0; j <m.getRow(); j++) {
-//                for (int k = 0; k < m.getCol(); k++) {
-//                    if (visit[j][k][i]==false)
-//                        maze[j][k][i]=rand.nextInt(2);
-//                }
-//            }
-//        }
 
     }
 }

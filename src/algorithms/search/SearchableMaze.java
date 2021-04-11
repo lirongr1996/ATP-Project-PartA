@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
@@ -9,7 +9,7 @@ public class SearchableMaze implements ISearchable {
     private Maze maze;
     private MazeState startState;
     private MazeState goalState;
-    private boolean [][] visit;
+    private boolean [][] visit; //visit is the matrix of visited cells.
 
     public SearchableMaze (Maze maze) throws Exception {
         this.maze=maze;
@@ -37,7 +37,7 @@ public class SearchableMaze implements ISearchable {
     }
 
     /**
-     * @return the start state of the maze
+     * @return the start state in the maze
      */
     @Override
     public AState getStartState() {
@@ -45,7 +45,7 @@ public class SearchableMaze implements ISearchable {
     }
 
     /**
-     * @return the goal state of the maze
+     * @return the goal state in the maze
      */
     @Override
     public AState getGoalState() {
@@ -53,8 +53,8 @@ public class SearchableMaze implements ISearchable {
     }
 
     /**
-     * @param stateA is the state from the maze
-     * @return arrayList that contains the all possible neighbor states that can move from stateA to them
+     * @param stateA is a state in the maze
+     * @return arrayList that contains the all possible neighbors states that can move from stateA to them
      */
     public ArrayList<AState> getAllSuccessors (AState stateA) throws Exception {
         if (stateA==null)

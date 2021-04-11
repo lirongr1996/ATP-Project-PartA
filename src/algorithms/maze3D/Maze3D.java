@@ -9,12 +9,12 @@ public class Maze3D {
 
     public Maze3D(int depth, int row, int column) throws Exception {
         if (depth<2 || row<0 || column<0)
-            throw new Exception("the data of create maze is negative");
+            throw new Exception("the data of create maze is out of bounds");
         this.threeDMaze =new int[row][column][depth];
     }
 
     /**
-     * @return the fubction return the array the contain the maze
+     * @return the 3D array that contain the maze
      */
     public int[][][] getMap()
     {
@@ -22,7 +22,7 @@ public class Maze3D {
     }
 
     /**
-     * @return the function return the start position
+     * @return the start position of the maze
      */
     public Position3D getStartPosition()
     {
@@ -30,7 +30,7 @@ public class Maze3D {
     }
 
     /**
-     * @return the function return the goal position
+     * @return the goal position
      */
     public Position3D getGoalPosition()
     {
@@ -38,7 +38,7 @@ public class Maze3D {
     }
 
     /**
-     * @param start is the position of the start the maze begin
+     * @param start is the position where the maze begin
      */
     public void setStart(Position3D start) throws Exception {
         if (start==null)
@@ -47,7 +47,7 @@ public class Maze3D {
     }
 
     /**
-     * @param goal is the position of the goal of the maze
+     * @param goal is the position where the maze ends
      */
     public void setGoal(Position3D goal) throws Exception {
         if (goal==null)
@@ -57,7 +57,7 @@ public class Maze3D {
 
 
     /**
-     * @return the number of the rows of the maze
+     * @return the number of the rows in the maze
      */
     public int getRow()
     {
@@ -81,9 +81,9 @@ public class Maze3D {
     }
 
     /**
-     * @param row is the number of the row of the position
-     * @param col is the number of the columns of the position
-     * @param depth is the number of the depth of the position
+     * @param row is row number in the position
+     * @param col is columns number in the position
+     * @param depth is depths number in the position
      * @param k is value of the position
      */
     public void setPosition (int row, int col, int depth, int k) throws Exception {
@@ -98,26 +98,28 @@ public class Maze3D {
      */
     public void print()
     {
-        int count=2*threeDMaze[0].length+2;
-        System.out.println("{ ");
-        for (int i = 0; i < threeDMaze[0][0].length; i++) {
-            for (int j = 0; j < threeDMaze.length; j++) {
+        System.out.println("{");
+        for(int depth = 0; depth < getDepth(); depth++){
+            for(int row = 0; row < getRow(); row++) {
                 System.out.print("{ ");
-                for (int k = 0; k < threeDMaze[0].length; k++) {
-                    if(j==getStartPosition().getRowIndex()&&k==getStartPosition().getColumnIndex() && i==getStartPosition().getDepthIndex())
+                for (int col = 0; col < getCol(); col++) {
+                    if (depth == start.getDepthIndex() && row == start.getRowIndex() && col == start.getColumnIndex()) // if the position is the start - mark with S
                         System.out.print("S ");
-                    else if(j==getGoalPosition().getRowIndex()&&k==getGoalPosition().getColumnIndex() && i==getGoalPosition().getDepthIndex())
-                        System.out.print("E ");
-                    else
-                        System.out.print(threeDMaze[j][k][i]+" ");
+                    else {
+                        if (depth == goal.getDepthIndex() && row == goal.getRowIndex() && col == goal.getColumnIndex()) // if the position is the goal - mark with E
+                            System.out.print("E ");
+                        else
+                            System.out.print(threeDMaze[row][col][depth] + " ");
+                    }
                 }
                 System.out.println("}");
             }
-            for (int k = 0; k <count &&i!=threeDMaze[0][0].length-1; k++) {
-                System.out.print("-");
-            }
-            if (i!=threeDMaze[0][0].length-1)
+            if(depth < threeDMaze.length - 1) {
+                System.out.print("---");
+                for (int i = 0; i < threeDMaze[0][0].length; i++)
+                    System.out.print("--");
                 System.out.println();
+            }
         }
         System.out.println("}");
     }

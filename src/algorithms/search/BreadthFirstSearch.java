@@ -1,14 +1,18 @@
-package algorithms.Search;
+package algorithms.search;
 
 import java.util.ArrayList;
-import java.util.Stack;
-import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class DepthFirstSearch extends ASearchingAlgorithm{
-    Stack<AState>possibleState;
+public class BreadthFirstSearch extends ASearchingAlgorithm {
+    private Queue<AState> possibleState ;
 
-    public DepthFirstSearch() {
-        this.possibleState =new Stack<>();
+    public BreadthFirstSearch() {
+        this.possibleState= new LinkedList<>();
+    }
+
+    public Queue<AState> getPossibleState() {
+        return possibleState;
     }
 
     /**
@@ -23,39 +27,39 @@ public class DepthFirstSearch extends ASearchingAlgorithm{
         Solution solve=new Solution();
 
         AState start=domain.getStartState();
-        possibleState.push(start);
+        getPossibleState().add(start);
 
         countNode++;
 
         AState currentState=null;
-        while (!possibleState.empty())
+
+        while (!getPossibleState().isEmpty())
         {
-            currentState=possibleState.pop();
+            currentState=getPossibleState().remove();
 
             if (currentState.state.compareTo(domain.getGoalState().state)==0)
                 break;
 
-            ArrayList <AState> neighbors=domain.getAllSuccessors(currentState);
-            Collections.shuffle(neighbors);
+            ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
+
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);
-                possibleState.push(n);
+                getPossibleState().add(n);
                 countNode++;
             }
         }
-
         solve.solutionPath=restoration(currentState,domain.getStartState());
 
         return solve;
     }
 
     /**
-     * @return the name of the search algorithm
+     * @return thee name of the searching algorithm
      */
     @Override
     public String getName() {
-        return "DepthFirstSearch";
+        return "BreadthFirstSearch";
     }
 
     /**

@@ -7,21 +7,21 @@ public class Position3D {
 
     public Position3D(int depth, int row, int column) throws Exception {
         if (depth<0 || row<0 || column<0)
-            throw new Exception("cant create position because the negative data");
+            throw new Exception("The data of create maze is out of bounds");
         this.row = row;
         this.column = column;
         this.depth = depth;
     }
 
     /**
-     * @return the number of the row of the position
+     * @return the row number in the  position
      */
     public int getRowIndex() {
         return row;
     }
 
     /**
-     * @param row is the new number of the row of the position
+     * @param row is the new number of the row in the position
      */
     public void setRow(int row) throws Exception {
         if (row<0)
@@ -30,14 +30,14 @@ public class Position3D {
     }
 
     /**
-     * @return the number of the column of the position
+     * @return the column number in the  position
      */
     public int getColumnIndex() {
         return column;
     }
 
     /**
-     * @param column is the new number of the column of the position
+     * @param column is the new number of the column in the position
      */
     public void setColumn(int column) throws Exception {
         if (column<0)
@@ -46,14 +46,14 @@ public class Position3D {
     }
 
     /**
-     * the number of the depth of the position
+     * @return the depth number in the  position
      */
     public int getDepthIndex() {
         return depth;
     }
 
     /**
-     * @param depth is the new number of the depth of the position
+     * @param depth is the new number of the depth in the position
      */
     public void setDepth(int depth) throws Exception {
         if (depth<2)

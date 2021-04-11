@@ -1,6 +1,6 @@
 package algorithms.maze3D;
 
-import algorithms.Search.AState;
+import algorithms.search.AState;
 
 public class Maze3DState extends AState {
     Position3D pos;
@@ -11,6 +11,10 @@ public class Maze3DState extends AState {
         this.pos = pos;
         this.state=pos.toString();
         this.comeFrom=state;
+        if (state==null)
+            this.cost=0;
+        else
+            this.cost=10+this.comeFrom.getCost();
     }
 
 
@@ -19,11 +23,11 @@ public class Maze3DState extends AState {
      */
     @Override
     public int getCost() {
-        return 10;
+        return this.cost;
     }
 
     /**
-     * @return the number of the row of the state
+     * @return the number of the row in the state
      */
     public int getX()
     {
@@ -31,7 +35,7 @@ public class Maze3DState extends AState {
     }
 
     /**
-     * @return the number of the column of the state
+     * @return the number of the column in the state
      */
     public int getY()
     {
@@ -39,7 +43,7 @@ public class Maze3DState extends AState {
     }
 
     /**
-     * @return the number of the depth of the state
+     * @return the number of the depth in the state
      */
     public  int getZ()
     {

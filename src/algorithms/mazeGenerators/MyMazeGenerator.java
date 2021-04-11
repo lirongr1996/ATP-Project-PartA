@@ -6,11 +6,14 @@ import java.util.Random;
 public class MyMazeGenerator extends AMazeGenerator {
 
     /**
-     * @param row is the number of the row of the maze
-     * @param col is the number of the column of the maze
-     * @return the maze the created
+     * @param row is the number of the maze rows.
+     * @param col is the number of the maze column.
+     * This function insures that the created maze is valid.
+     * @return the maze that created
      */
     public Maze generate(int row, int col) throws Exception {
+        if (row<=0 || col<=0 || (row==1 && col==1))
+            throw new Exception("the data of create maze is out of bounds");
         Maze m=new Maze(row,col);
         while (m.getStartPosition()==null ||m.getGoalPosition()==null) {
             generate(m);
@@ -20,17 +23,16 @@ public class MyMazeGenerator extends AMazeGenerator {
 
 
     /**
-     * @param m is the maze that fill with prim algorithm
-     * frontiers is list that contains the possible cells to change to 0
-     *if start or the end is false, and the position is in the bounds, so set the start/goal position
-     * @return the maze that created and filled
+     * @param m is the maze filled by this function with prim algorithm
+     * frontiers is list that contains the possible neighbors
+     * @return the maze that filled
      */
     public Maze generate(Maze m) throws Exception {
         if (m==null)
-            throw new Exception("the maxe is null");
+            throw new Exception("The maze is null");
         Random rand=new Random();
-      //  Maze m=new Maze(row,col);
         int [][] maze=m.getTwoDMaze();
+        //fill the maze with walls
         for (int i = 0; i < m.getRow(); i++) {
             for (int j = 0; j < m.getCol(); j++) {
                 maze[i][j]=1;
@@ -39,7 +41,7 @@ public class MyMazeGenerator extends AMazeGenerator {
 
         boolean start=false;
         LinkedList<int[]> frontiers = new LinkedList<>();
-        int x,y,x1,y1;
+        int x,y;
         if (m.getRow()%2==0&&m.getCol()%2==0)
         {
             x=0;
@@ -51,9 +53,8 @@ public class MyMazeGenerator extends AMazeGenerator {
             y = rand.nextInt(m.getCol());
             frontiers.add(new int[]{x, y, x, y});
         }
-        x1=x;
-        y1=y;
 
+        //implement the prim algorithm
         while (!frontiers.isEmpty())
         {
             int[] f = frontiers.remove( rand.nextInt( frontiers.size() ) );

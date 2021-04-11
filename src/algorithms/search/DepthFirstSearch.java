@@ -1,19 +1,14 @@
-package algorithms.Search;
+package algorithms.search;
 
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class BreadthFirstSearch extends ASearchingAlgorithm {
-    protected Queue<AState> possibleState ;
+public class DepthFirstSearch extends ASearchingAlgorithm{
+    Stack<AState>possibleState;
 
-    public BreadthFirstSearch() {
-        this.possibleState= new LinkedList<>();
-    }
-
-    public Queue<AState> getPossibleState() {
-        return possibleState;
+    public DepthFirstSearch() {
+        this.possibleState =new Stack<>();
     }
 
     /**
@@ -28,40 +23,39 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         Solution solve=new Solution();
 
         AState start=domain.getStartState();
-        getPossibleState().add(start);
+        possibleState.push(start);
 
         countNode++;
 
         AState currentState=null;
-
-        while (!getPossibleState().isEmpty())
+        while (!possibleState.empty())
         {
-            currentState=getPossibleState().remove();
+            currentState=possibleState.pop();
 
             if (currentState.state.compareTo(domain.getGoalState().state)==0)
                 break;
 
-            ArrayList<AState> neighbors=domain.getAllSuccessors(currentState);
-
-
+            ArrayList <AState> neighbors=domain.getAllSuccessors(currentState);
+            Collections.shuffle(neighbors);
             while(!neighbors.isEmpty()) {
                 AState n=neighbors.remove(0);
                 n.setComeFrom(currentState);
-                getPossibleState().add(n);
+                possibleState.push(n);
                 countNode++;
             }
         }
+
         solve.solutionPath=restoration(currentState,domain.getStartState());
 
         return solve;
     }
 
     /**
-     * @return thee name of the search algorithm
+     * @return the name of the searching algorithm
      */
     @Override
     public String getName() {
-        return "BreadthFirstSearch";
+        return "DepthFirstSearch";
     }
 
     /**

@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 import java.util.Objects;
 
@@ -17,22 +17,22 @@ public abstract class AState {
     }
 
     /**
-     * @return the cost of the movement between two state
+     * @return the cost of the movement between two states
      */
     public abstract int getCost();
 
 
     /**
-     * @param state is the state that this state came from
+     * @param state is the previous state of a currect state
      */
     public void setComeFrom(AState state) throws Exception {
         if (state==null)
-            throw new Exception("can't chage the father state because the state is null");
+            throw new Exception("can't change the previous state because the state is null");
         this.comeFrom=state;
     }
 
     /**
-     * @return the state that this state came from
+     * @return the previous state
      */
     public AState getComeFrom()
     {

@@ -1,4 +1,4 @@
-package algorithms.Search;
+package algorithms.search;
 
 import algorithms.mazeGenerators.Position;
 
@@ -13,15 +13,18 @@ public class MazeState extends AState{
         this.pos = pos;
         this.state=pos.toString();
         this.comeFrom=state;
+        //set the cost of the move
         if (state!=null) {
             int x = Integer.parseInt(comeFrom.state.substring(1, comeFrom.state.indexOf(",")));
             int y = Integer.parseInt(comeFrom.state.substring(comeFrom.state.indexOf(",") + 1, comeFrom.state.length() - 1));
 
             if ((x == pos.getRowIndex() - 1 && y == pos.getColumnIndex() - 1) || (x == pos.getRowIndex() + 1 && y == pos.getColumnIndex() + 1) || (x == pos.getRowIndex() + 1 && y == pos.getColumnIndex() - 1) || (x == pos.getRowIndex() - 1 && y == pos.getColumnIndex() + 1))
-                cost = 15;
+                this.cost = 15+comeFrom.getCost();
             else
-                cost = 10;
+                this.cost = 10+comeFrom.getCost();
         }
+        else
+            this.cost=0;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class MazeState extends AState{
     }
 
     /**
-     * @return the number of the row of the state
+     * @return the number of the row in the state
      */
     public int getX()
     {
@@ -50,7 +53,7 @@ public class MazeState extends AState{
     }
 
     /**
-     * @return the number of the colum of the state
+     * @return the number of the column in the state
      */
     public int getY()
     {
