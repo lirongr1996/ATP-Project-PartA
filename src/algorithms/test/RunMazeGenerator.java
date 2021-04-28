@@ -2,6 +2,8 @@ package algorithms.test;
 
 import  algorithms.mazeGenerators.*;
 
+import java.nio.*;
+
 public class RunMazeGenerator {
     public static void main(String[] args) {
         testMazeGenerator(new EmptyMazeGenerator());

@@ -1,5 +1,7 @@
 package algorithms.mazeGenerators;
 
+import java.nio.ByteBuffer;
+
 public class Maze {
     private  int [][] twoDMaze;
     private Position start;
@@ -97,6 +99,64 @@ public class Maze {
             }
             System.out.println("}");
         }
+    }
+
+
+    private void enterByteArray(int num, byte[] arr, int index)
+    {
+        byte [] temp=ByteBuffer.allocate(4).putInt(num).array();
+        for (int i=0;i<temp.length;i++) {
+            arr[index] = temp[i];
+            index++;
+        }
+    }
+
+    public byte[] toByteArray()
+    {
+        byte [] m=new byte[twoDMaze.length*twoDMaze[0].length+4*6];
+        int index=24;
+        enterByteArray(twoDMaze.length,m,0);
+        enterByteArray(twoDMaze[0].length,m,4);
+        enterByteArray(start.getRowIndex(),m,8);
+        enterByteArray(start.getColumnIndex(),m,12);
+        enterByteArray(goal.getRowIndex(),m,16);
+        enterByteArray(goal.getColumnIndex(),m,20);
+
+        for (int i=0;i<twoDMaze.length;i++)
+            for (int j=0;j<twoDMaze[0].length;j++)
+            {
+                m[index]=(byte)twoDMaze[i][j];
+                index++;
+            }
+
+        return  m;
+    }
+
+
+    private int convertToInt (byte [] arr, int index)
+    {
+        byte[] temp=new byte[4];
+        for (int i=0;i<4;i++) {
+            temp[i] = arr[index];
+            index++;
+        }
+        return ByteBuffer.wrap(temp).getInt();
+    }
+
+    public Maze(byte [] arr) throws Exception {
+        int index=24;
+        int row=convertToInt(arr,0);
+        int col=convertToInt(arr,4);
+        start=new Position(convertToInt(arr,8),convertToInt(arr,12));
+        goal=new Position(convertToInt(arr,16),convertToInt(arr,20));
+        twoDMaze=new int[row][col];
+
+        for (int i=0;i<twoDMaze.length;i++)
+            for (int j=0;j<twoDMaze[0].length;j++)
+            {
+                twoDMaze[i][j]=arr[index];
+                index++;
+            }
     }
 
 }
