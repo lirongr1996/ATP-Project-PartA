@@ -30,7 +30,18 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 count++;
             else
             {
-                out.write(count);
+                if (count<127)
+                    out.write(count);
+                else
+                {
+                    while (count>127)
+                    {
+                        out.write(127);
+                        out.write(0);
+                        count-=127;
+                    }
+                    out.write(count);
+                }
                 count=1;
                 previous=b[i];
             }
