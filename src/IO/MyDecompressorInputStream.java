@@ -20,43 +20,31 @@ public class MyDecompressorInputStream extends InputStream {
         for (int i=0;i<24;i++)
             b[i]=(byte) in.read();
         int temp=in.read();
-        int index=24;
-        if (temp==0) {
-            temp =in.read();
-            index++;
-        }
         int j=24;
-        int previous=24;
+        byte[]reverse=new byte[8];
         while (temp!=-1)
         {
-            if (index%2==0)
+            if (b.length-j<8)
             {
-                if (temp<previous)
+                byte[] re=new byte[b.length-j];
+                for (int i=0;i<b.length-j;i++)
                 {
-                    for (int i=0;i<256-previous+temp;i++,j++)
-                        b[j]=0;
+                    re[i]=(byte) (temp%2);
+                    temp/=2;
                 }
-                else {
-                    for (int i = previous; i < temp; i++, j++)
-                        b[j] = 0;
+                for (int i=0;i<re.length;i++,j++)
+                    b[j]=re[re.length-1-i];
+            }
+            else {
+                for (int i = 0; i < 8; i++) {
+                    reverse[i] = (byte) (temp % 2);
+                    temp/=2;
+                }
+                for (int i = 0; i < 8; i++, j++) {
+                    b[j] = reverse[7 - i];
                 }
             }
-            else
-            {
-                if (temp<previous)
-                {
-                    for (int i=0;i<256-previous+temp;i++,j++)
-                        b[j]=1;
-                }
-                else {
-                    for (int i=previous;i<temp;i++,j++)
-                        b[j]=1;
-                }
-            }
-            index++;
-            previous=temp;
             temp=in.read();
-
         }
         return 0;
     }

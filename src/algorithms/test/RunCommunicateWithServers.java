@@ -31,11 +31,25 @@ public class RunCommunicateWithServers {
 
 //Communicating with servers
 
-        for (int i=0;i<2;i++)
+        Thread[] threads=new Thread[2];
+        for (int i=0;i<threads.length;i++)
         {
-            new Thread(()->{
-                CommunicateWithServer_MazeGenerating();
-            }).start();
+            threads[i]=new Thread(()->CommunicateWithServer_MazeGenerating() );
+            threads[i].start();
+        }
+        for (int i=0;i<threads.length;i++)
+        {
+            threads[i].join();
+        }
+        threads=new Thread[2];
+        for (int i=0;i<threads.length;i++)
+        {
+            threads[i]=new Thread(()->CommunicateWithServer_SolveSearchProblem() );
+            threads[i].start();
+        }
+        for (int i=0;i<threads.length;i++)
+        {
+            threads[i].join();
         }
 
         //CommunicateWithServer_MazeGenerating();

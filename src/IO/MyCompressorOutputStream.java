@@ -22,39 +22,29 @@ public class MyCompressorOutputStream extends OutputStream {
     public void write(byte [] b) throws IOException {
         for (int i=0;i<24;i++)
             out.write(b[i]);
-        if (b[24]==1)
-            out.write(0);
-        int previous=24;
-        int j=25;
-        for (j=25;j<b.length;j++)
+        int num=0;
+        for (int i=24;i<b.length;i++)
         {
-            if(b[j]!=b[j-1]) {
-                if (j-previous>255) {
-                    int num = previous+255;
-                    while (num > 255) {
-                        out.write(num);
-                        out.write(0);
-                        num += 255;
-                    }
-                    out.write(j);
+            if (b.length-i<8)
+            {
+                int len=b.length-i;
+                for (int j=0;j<len;j++)
+                {
+                    num+=b[i]*Math.pow(2,len-1-j);
+                    i++;
                 }
-                else
-                    out.write(j);
-                previous = j;
             }
-
-        }
-        if (j-previous>255) {
-            int num =previous+255;
-            while (num <j) {
-                out.write(num);
-                out.write(0);
-                num += 255;
+            else {
+                for (int j = 0; j < 8; j++) {
+                    num += b[i] * Math.pow(2, 7 - j);
+                    i++;
+                }
             }
-            int d=j-(num-255);
-            out.write(d);
+            out.write(num);
+            num=0;
+            if (i==b.length)
+                break;
+            i--;
         }
-        else
-            out.write(b.length);
     }
 }
