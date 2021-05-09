@@ -1,9 +1,10 @@
 package algorithms.search;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.*;
 
-public class BestFirstSearch extends BreadthFirstSearch {
+public class BestFirstSearch extends BreadthFirstSearch implements Serializable {
     private Queue<AState> possibleState;
 
     public BestFirstSearch() {

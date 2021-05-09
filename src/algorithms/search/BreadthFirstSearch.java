@@ -1,10 +1,11 @@
 package algorithms.search;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BreadthFirstSearch extends ASearchingAlgorithm {
+public class BreadthFirstSearch extends ASearchingAlgorithm  implements Serializable {
     private Queue<AState> possibleState ;
 
     public BreadthFirstSearch() {

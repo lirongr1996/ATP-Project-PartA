@@ -25,24 +25,36 @@ public class MyCompressorOutputStream extends OutputStream {
         if (b[24]==1)
             out.write(0);
         int previous=24;
-        for (int i=25;i<b.length;i++)
+        int j=25;
+        for (j=25;j<b.length;j++)
         {
-            if(b[i]!=b[i-1]) {
-                if (i-previous>255) {
-                    int num = i - previous;
+            if(b[j]!=b[j-1]) {
+                if (j-previous>255) {
+                    int num = previous+255;
                     while (num > 255) {
-                        out.write(255);
+                        out.write(num);
                         out.write(0);
-                        num -= 255;
+                        num += 255;
                     }
-                    out.write(num);
+                    out.write(j);
                 }
                 else
-                    out.write(i);
-                previous = i;
+                    out.write(j);
+                previous = j;
             }
 
         }
-        out.write(b.length);
+        if (j-previous>255) {
+            int num =previous+255;
+            while (num <j) {
+                out.write(num);
+                out.write(0);
+                num += 255;
+            }
+            int d=j-(num-255);
+            out.write(d);
+        }
+        else
+            out.write(b.length);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Properties;
 public class ServerStrategySolveSearchProblem implements IServerStrategy{
 
     @Override
-    public void applyStrategy(InputStream inFromClient, OutputStream outToClient) {
+    public void ServerStrategy(InputStream inFromClient, OutputStream outToClient) {
         try {
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
@@ -43,12 +43,12 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
                     ISearchingAlgorithm searcher=null;
                     Properties prop = new Properties();
                     prop.load(input);
-                    if (prop.getProperty("mazeGeneratingAlgorithm").equals("BreadthFirstSearch"))
+                    if (prop.getProperty("mazeSearchingAlgorithm").equals("BreadthFirstSearch"))
                         searcher=new BreadthFirstSearch();
-                    if (prop.getProperty("mazeGeneratingAlgorithm").equals("DepthFirstSearch"))
+                    if (prop.getProperty("mazeSearchingAlgorithm").equals("DepthFirstSearch"))
                         searcher=new DepthFirstSearch();
-                    if (prop.getProperty("BestFirstSearch").equals("BestFirstSearch"))
-                        searcher=new BreadthFirstSearch();
+                    if (prop.getProperty("mazeSearchingAlgorithm").equals("BestFirstSearch"))
+                        searcher=new BestFirstSearch();
                     SearchableMaze searchableMaze = new SearchableMaze(maze);
                     Solution s = searcher.solve(searchableMaze);
                     toClient.writeObject(s);

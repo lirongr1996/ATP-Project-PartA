@@ -1,5 +1,6 @@
 package IO;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -46,6 +47,17 @@ public class SimpleCompressorOutputStream extends OutputStream {
                 previous=b[i];
             }
         }
-        out.write(count);
+        if (count >127)
+        {
+            while (count>127)
+            {
+                out.write(127);
+                out.write(0);
+                count-=127;
+            }
+            out.write(count);
+        }
+        else
+            out.write(count);
     }
 }

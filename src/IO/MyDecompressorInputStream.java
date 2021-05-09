@@ -49,8 +49,8 @@ public class MyDecompressorInputStream extends InputStream {
                         b[j]=1;
                 }
                 else {
-                for (int i=previous;i<temp;i++,j++)
-                    b[j]=1;
+                    for (int i=previous;i<temp;i++,j++)
+                        b[j]=1;
                 }
             }
             index++;

@@ -1,8 +1,9 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 
-public class Maze {
+public class Maze implements Serializable {
     private  int [][] twoDMaze;
     private Position start;
     private  Position goal;

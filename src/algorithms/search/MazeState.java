@@ -2,9 +2,10 @@ package algorithms.search;
 
 import algorithms.mazeGenerators.Position;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class MazeState extends AState{
+public class MazeState extends AState implements Serializable {
     Position pos;
 
     public MazeState(Position pos,AState state) throws Exception {
@@ -50,6 +51,10 @@ public class MazeState extends AState{
     public int getX()
     {
         return pos.getRowIndex();
+    }
+
+    public Position getPos() {
+        return pos;
     }
 
     /**

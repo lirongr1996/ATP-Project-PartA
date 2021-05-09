@@ -1,8 +1,9 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class EmptyMazeGenerator extends AMazeGenerator {
+public class EmptyMazeGenerator extends AMazeGenerator implements Serializable {
 
     /**
      * @param row is the number of the maze rows.

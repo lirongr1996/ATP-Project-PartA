@@ -10,14 +10,14 @@ public class Configurations {
 
     private Configurations()
     {
-        try (OutputStream output = new FileOutputStream("path/to/config.properties")) {
+        try (OutputStream output = new FileOutputStream("C:/Users/liron/IdeaProjects/ATP-Project-PartB/resources/config.properties")) {
 
             Properties prop = new Properties();
 
             // set the properties value
-            prop.setProperty("threadPoolSize", "2");
+            prop.setProperty("threadPoolSize", "3");
             prop.setProperty("mazeGeneratingAlgorithm", "MyMazeGenerator");
-            prop.setProperty("mazeGeneratingAlgorithm", "BestFirstSearch");
+            prop.setProperty("mazeSearchingAlgorithm", "BestFirstSearch");
 
             // save properties to project root folder
             prop.store(output, null);

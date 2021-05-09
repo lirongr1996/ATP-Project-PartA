@@ -1,10 +1,11 @@
 package algorithms.search;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Collections;
 
-public class DepthFirstSearch extends ASearchingAlgorithm{
+public class DepthFirstSearch extends ASearchingAlgorithm  implements Serializable {
     Stack<AState>possibleState;
 
     public DepthFirstSearch() {

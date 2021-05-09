@@ -1,8 +1,9 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class SimpleMazeGenerator extends AMazeGenerator{
+public class SimpleMazeGenerator extends AMazeGenerator  implements Serializable {
 
 
     /**

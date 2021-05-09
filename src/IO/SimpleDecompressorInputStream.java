@@ -3,7 +3,7 @@ package IO;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SimpleDecompressorInputStream extends InputStream {
+public class SimpleDecompressorInputStream extends InputStream  {
     private InputStream in;
 
     public SimpleDecompressorInputStream(InputStream in) {
